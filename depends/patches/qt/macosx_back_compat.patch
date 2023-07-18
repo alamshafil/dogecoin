@@ -1,0 +1,25 @@
+--- a/qtbase/src/plugins/platforms/cocoa/qcocoawindow.mm
++++ b/qtbase/src/plugins/platforms/cocoa/qcocoawindow.mm
+@@ -59,11 +59,22 @@
+ 
+ #include <AppKit/AppKit.h>
+ #include <QuartzCore/QuartzCore.h>
++#include <Cocoa/Cocoa.h>
+ 
+ #include <QDebug>
+ 
+ #include <vector>
+ 
++typedef NSUInteger NSWindowStyleMask;
++static const NSWindowStyleMask NSWindowStyleMaskClosable = NSClosableWindowMask;
++static const NSWindowStyleMask NSWindowStyleMaskTitled = NSTitledWindowMask;
++static const NSWindowStyleMask NSWindowStyleMaskMiniaturizable = NSMiniaturizableWindowMask;
++static const NSWindowStyleMask NSWindowStyleMaskResizable = NSResizableWindowMask;
++static const NSWindowStyleMask NSWindowStyleMaskBorderless = NSBorderlessWindowMask;
++static const NSWindowStyleMask NSWindowStyleMaskFullScreen = NSFullScreenWindowMask;
++
++#define NSEventTypeMouseMoved NSMouseMoved
++
+ QT_BEGIN_NAMESPACE
+ 
+ enum {
